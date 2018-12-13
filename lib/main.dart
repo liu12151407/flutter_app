@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:flutter_app/demo/CustomJPasswordField.dart';
 
 void main() => runApp(new MyApp());
 
@@ -10,53 +10,10 @@ class MyApp extends StatelessWidget {
     // TODO: implement build
     return new MaterialApp(
       title: "Startup Name Generator",
-      home: new RandomWords(),
-    );
-  }
-}
-
-class RandomWords extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return new RandomWordsState();
-  }
-}
-
-class RandomWordsState extends State<RandomWords> {
-  final wordPair = new WordPair.random();
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
-  @override
-  Widget build(BuildContext context) {
-    Widget _buildSuggestions() {
-      return new ListView.builder(
-          padding: const EdgeInsets.all(16.0),
-          itemBuilder: (context, i) {
-            if (i.isOdd) return new Divider();
-            final index = i ~/ 2;
-            if (index >= _suggestions.length) {
-              _suggestions.addAll(generateWordPairs().take(10));
-            }
-            return _buildRow(_suggestions[index]);
-          });
-    }
-
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Startup Name Generator"),
+      theme: new ThemeData(
+        primaryColor: Colors.red,
       ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  Widget _buildRow(WordPair pair) {
-    return new ListTile(
-      title: new Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
+//      home: new CustomJPasswordField(),
     );
   }
 }
